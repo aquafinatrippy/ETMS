@@ -1,4 +1,6 @@
 import {ConnectionOptions} from "typeorm";
+import {User} from "../models/user";
+import {TimeLog} from "../models/timelog";
 
 const config: ConnectionOptions = {
     type: "postgres",
@@ -7,7 +9,7 @@ const config: ConnectionOptions = {
     password:  process.env.POSTGRES_PASSWORD || "example",
     database:  process.env.POSTGRES_DB || "ETMS",
     port: 5432,
-    entities: [],
+    entities: [User, TimeLog],
     synchronize: true
 }
 
