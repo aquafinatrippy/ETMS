@@ -12,7 +12,7 @@ import {TimeLog} from "./timelog";
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id!: string;
 
     @Column()
@@ -35,11 +35,13 @@ export class User {
     createdAt!: Date;
 
     @UpdateDateColumn()
-    updatedAt!: Date;
+    updatedAt?: Date;
 
     @BeforeInsert()
     async hashPassword(){
-        this.password = await bcrypt.hash(this.password, 8)
+        if(this.password){
+            this.password = await bcrypt.hash(this.password, 8)
+        }
     }
 
     async validatePassword(password: string): Promise<boolean> {

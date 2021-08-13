@@ -1,0 +1,161 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"User": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"surname": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"timelogs": {
+						"items": {
+							"$ref": "#/components/schemas/TimeLog"
+						},
+						"type": "array"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"email",
+					"name",
+					"surname",
+					"password",
+					"createdAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TimeLog": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"start": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"end": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"user": {
+						"$ref": "#/components/schemas/User"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"id",
+					"description",
+					"start",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUserPayload": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"surname": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"name",
+					"surname",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "",
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/users": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IUserPayload"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
