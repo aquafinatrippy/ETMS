@@ -16,6 +16,13 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc -p .",
-    "startDev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node src/index.ts"
   }
 }
