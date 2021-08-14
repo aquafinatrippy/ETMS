@@ -110,6 +110,22 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"ILoginPayload": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -120,7 +136,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/users": {
+		"/users/register": {
 			"post": {
 				"operationId": "CreateUser",
 				"responses": {
@@ -146,6 +162,36 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/IUserPayload"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/login": {
+			"post": {
+				"operationId": "LoginUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"User"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ILoginPayload"
 							}
 						}
 					}
