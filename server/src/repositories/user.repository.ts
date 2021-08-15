@@ -1,23 +1,15 @@
 import {getRepository} from "typeorm";
-import {User} from "../models/user"
+import {User} from "../models/user.entity"
 import * as bcrypt from 'bcryptjs'
+import {Feedback, ILoginPayload, IUserPayload} from "../interfaces/user.interface";
 
-export interface IUserPayload {
-    email: string;
-    name: string;
-    surname: string;
-    password: string;
-}
 
-export interface ILoginPayload {
-    email: string;
-    password: string;
-}
 
-export const loginUser = async (payload: ILoginPayload): Promise<any> => {
+
+export const loginUser = async (payload: ILoginPayload): Promise<User | Feedback> => {
     const userRepository = getRepository(User)
     const user = await userRepository.findOne({email: payload.email})
-    if (!user) return null
+    if (!user) return {message: "User not found"}
     const passwordMatching = await bcrypt.compare(payload.password, user.password)
     if (passwordMatching) {
         return user

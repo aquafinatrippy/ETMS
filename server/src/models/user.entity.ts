@@ -2,13 +2,13 @@ import {
     BeforeInsert,
     Column,
     CreateDateColumn,
-    Entity,
+    Entity, JoinColumn,
     OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
 import * as bcrypt from 'bcryptjs'
-import {TimeLog} from "./timelog";
+import {TimeLog} from "./timelog.entity";
 
 @Entity()
 export class User {

@@ -1,6 +1,6 @@
 import {ConnectionOptions} from "typeorm";
-import {User} from "../models/user";
-import {TimeLog} from "../models/timelog";
+import {User} from "../models/user.entity";
+import {TimeLog} from "../models/timelog.entity";
 
 const config: ConnectionOptions = {
     type: "postgres",

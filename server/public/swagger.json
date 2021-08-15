@@ -65,6 +65,9 @@
 						"type": "string",
 						"format": "date-time"
 					},
+					"userId": {
+						"type": "string"
+					},
 					"user": {
 						"$ref": "#/components/schemas/User"
 					},
@@ -81,6 +84,7 @@
 					"id",
 					"description",
 					"start",
+					"userId",
 					"createdAt",
 					"updatedAt"
 				],
@@ -107,6 +111,18 @@
 					"name",
 					"surname",
 					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Feedback": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -176,7 +192,16 @@
 						"description": "Ok",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										},
+										{
+											"$ref": "#/components/schemas/Feedback"
+										}
+									]
+								}
 							}
 						}
 					}
@@ -196,6 +221,47 @@
 						}
 					}
 				}
+			}
+		},
+		"/timelog/times/{userId}": {
+			"get": {
+				"operationId": "GetAllTimelogs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"items": {
+												"$ref": "#/components/schemas/TimeLog"
+											},
+											"type": "array"
+										},
+										{
+											"$ref": "#/components/schemas/Feedback"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Timelog"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},
