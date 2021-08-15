@@ -18,10 +18,10 @@ export class TimeLog {
     @Column()
     description!: string;
 
-    @Column()
+    @Column({type: "timestamptz"})
     start!: Date
 
-    @Column({nullable: true})
+    @Column({nullable: true, type: "date"})
     end?: Date;
 
     @Column({ name: 'userId' })

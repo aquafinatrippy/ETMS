@@ -8,7 +8,7 @@ import {Feedback, ILoginPayload, IUserPayload} from "../interfaces/user.interfac
 @Tags("User")
 export default class UserController {
     @Post("/register")
-    public async createUser(@Body() body: IUserPayload): Promise<User> {
+    public async createUser(@Body() body: IUserPayload): Promise<User | Feedback> {
         return createUser(body)
     }
     @Post("/login")

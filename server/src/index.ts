@@ -17,12 +17,12 @@ app.use(
     swaggerUi.serve,
     swaggerUi.setup(undefined, {
         swaggerOptions: {
-            url: "swagger.json"
+            url: "/swagger.json"
         }
     })
 )
 
-app.use(Router)
+app.use("/api", Router)
 
 
 createConnection(dbConf).then((_connection) => {

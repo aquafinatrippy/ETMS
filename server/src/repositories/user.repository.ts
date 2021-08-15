@@ -18,7 +18,7 @@ export const loginUser = async (payload: ILoginPayload): Promise<User | Feedback
     }
 }
 
-export const createUser = async (payload: IUserPayload): Promise<User> => {
+export const createUser = async (payload: IUserPayload): Promise<User | Feedback> => {
     try {
         const userRepository = getRepository(User);
         const user = new User()
@@ -29,6 +29,6 @@ export const createUser = async (payload: IUserPayload): Promise<User> => {
             ...payload
         })
     } catch (err) {
-        return err
+        return {message: err}
     }
 }

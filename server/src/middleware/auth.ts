@@ -1,15 +1,11 @@
 import jwt from "jsonwebtoken";
-import {Request, Response, NextFunction} from 'express'
+import {NextFunction, Response} from 'express'
 
-export default function (req: Request, res: Response, next: NextFunction) {
+export default function (req: any, res: Response, next: NextFunction) {
     const token = req.cookies.access_token;
-    if (!token) return res.status(401).json({ message: "Auth Error" });
-
-
+    if (!token) return res.status(401).json({ message: "Not authenticated" });
     try {
-        const decoded = jwt.verify(token, "YOUR_SECRET_KEY");
-        //req.user = decoded.email;
-        console.log(decoded)
+        req.id = jwt.verify(token, "YOUR_SECRET_KEY");
         next();
     } catch (e) {
         console.error(e);
