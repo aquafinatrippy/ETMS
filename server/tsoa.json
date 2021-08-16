@@ -6,5 +6,10 @@
     "outputDirectory": "public",
     "specVersion": 3
   },
+  "routes": {
+    "basePath": "/",
+    "entryFile": "./src/index.ts",
+    "routesDir": "./src/routes/index.ts"
+  },
   "ignore": ["**/node_modules/**"]
 }

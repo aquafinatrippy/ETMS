@@ -4,6 +4,7 @@ import dbConf from "./config/database"
 import swaggerUi from "swagger-ui-express";
 import Router from "./routes"
 import cookieParser from "cookie-parser"
+import {default as swaggerJson} from './swagger.json'
 
 const PORT = process.env.PORT || 3000
 
@@ -15,11 +16,7 @@ app.use(cookieParser())
 app.use(
     "/docs",
     swaggerUi.serve,
-    swaggerUi.setup(undefined, {
-        swaggerOptions: {
-            url: "/swagger.json"
-        }
-    })
+    swaggerUi.setup(swaggerJson)
 )
 
 app.use("/api", Router)

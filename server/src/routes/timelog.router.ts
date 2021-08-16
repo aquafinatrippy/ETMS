@@ -16,4 +16,16 @@ router.post("/submit", jwtAuth, async (req: Request, res: Response) => {
     return res.json(response)
 })
 
+router.get("/:timelogId", jwtAuth, async (req: Request, res: Response) => {
+    const controller = new TimelogController()
+    const response = await controller.findTimelog(req.params.timelogId)
+    return res.json(response)
+})
+
+router.patch("/end/:timelogId", jwtAuth, async (req: Request, res: Response) => {
+    const controller = new TimelogController()
+    const response = await controller.endTimelog(req.params.timelogId, req.body.endTime)
+    return res.json(response)
+})
+
 export default router

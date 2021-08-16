@@ -21,7 +21,7 @@ export class TimeLog {
     @Column({type: "timestamptz"})
     start!: Date
 
-    @Column({nullable: true, type: "date"})
+    @Column({nullable: true, type: "timestamptz", default: null})
     end?: Date;
 
     @Column({ name: 'userId' })

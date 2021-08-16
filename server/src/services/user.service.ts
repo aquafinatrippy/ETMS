@@ -3,9 +3,6 @@ import {User} from "../models/user.entity"
 import * as bcrypt from 'bcryptjs'
 import {Feedback, ILoginPayload, IUserPayload} from "../interfaces/user.interface";
 
-
-
-
 export const loginUser = async (payload: ILoginPayload): Promise<User | Feedback> => {
     const userRepository = getRepository(User)
     const user = await userRepository.findOne({email: payload.email})

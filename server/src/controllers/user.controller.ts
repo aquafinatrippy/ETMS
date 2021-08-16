@@ -1,5 +1,5 @@
 import {Body, Post, Route, Tags} from "tsoa";
-import {createUser, loginUser} from "../repositories/user.repository";
+import {createUser, loginUser} from "../services/user.service";
 import {User} from "../models/user.entity";
 import {Feedback, ILoginPayload, IUserPayload} from "../interfaces/user.interface";
 
