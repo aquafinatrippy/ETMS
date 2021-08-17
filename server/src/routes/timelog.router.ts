@@ -24,7 +24,7 @@ router.get("/:timelogId", jwtAuth, async (req: Request, res: Response) => {
 
 router.patch("/end/:timelogId", jwtAuth, async (req: Request, res: Response) => {
     const controller = new TimelogController()
-    const response = await controller.endTimelog(req.params.timelogId, req.body.endTime)
+    const response = await controller.endTimelog(req.params.timelogId)
     return res.json(response)
 })
 

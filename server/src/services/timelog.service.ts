@@ -40,14 +40,14 @@ export const findTimelog = async (timelogId: string): Promise<ITimeLogPayload | 
     }
 }
 
-export const endTimelog = async (timelogId: string, end_timelog: Date): Promise<ITimeLogPayload | Feedback> => {
+export const endTimelog = async (timelogId: string): Promise<ITimeLogPayload | Feedback> => {
     try {
         const timelogRepository = getRepository(TimeLog)
         const timelog = await timelogRepository.findOne({where: {id: timelogId, end: null}})
         if(!timelog) return {message: "Timelog was not found"}
         return await timelogRepository.save({
             ...timelog,
-            end: end_timelog
+            end: new Date().toLocaleString()
         })
     }catch (e) {
         return {message: "Failed to end timelog"}

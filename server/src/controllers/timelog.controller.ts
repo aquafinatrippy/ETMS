@@ -26,8 +26,8 @@ export default class TimelogController{
     }
     @Security("jwt", ["user"])
     @Patch("/end/{timelogId}")
-    public async endTimelog(@Path() timelogId: string, @Body() end_timelog: Date): Promise<ITimeLogPayload | Feedback>{
-        return endTimelog(timelogId, end_timelog)
+    public async endTimelog(@Path() timelogId: string): Promise<ITimeLogPayload | Feedback>{
+        return endTimelog(timelogId)
     }
     @Security("jwt", ["user"])
     @Delete("/{timelogId}")
