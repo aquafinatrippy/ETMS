@@ -28,4 +28,10 @@ router.patch("/end/:timelogId", jwtAuth, async (req: Request, res: Response) => 
     return res.json(response)
 })
 
+router.delete("/:timelogId", jwtAuth, async (req: Request, res: Response) => {
+    const controller = new TimelogController()
+    const response = await controller.deleteTimelog(req.params.timelogId)
+    return  res.json(response)
+})
+
 export default router

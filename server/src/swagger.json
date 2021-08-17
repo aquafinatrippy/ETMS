@@ -177,7 +177,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/users/register": {
+		"/api/auth/register": {
 			"post": {
 				"operationId": "CreateUser",
 				"responses": {
@@ -200,7 +200,7 @@
 					}
 				},
 				"tags": [
-					"User"
+					"Auth"
 				],
 				"security": [],
 				"parameters": [],
@@ -216,7 +216,7 @@
 				}
 			}
 		},
-		"/users/login": {
+		"/api/auth/login": {
 			"post": {
 				"operationId": "LoginUser",
 				"responses": {
@@ -239,7 +239,7 @@
 					}
 				},
 				"tags": [
-					"User"
+					"Auth"
 				],
 				"security": [],
 				"parameters": [],
@@ -255,7 +255,7 @@
 				}
 			}
 		},
-		"/timelog/times/{userId}": {
+		"/api/timelog/times": {
 			"get": {
 				"operationId": "GetAllTimelogs",
 				"responses": {
@@ -283,20 +283,17 @@
 				"tags": [
 					"Timelog"
 				],
-				"security": [],
-				"parameters": [
+				"security": [
 					{
-						"in": "path",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
+						"jwt": [
+							"user"
+						]
 					}
-				]
+				],
+				"parameters": []
 			}
 		},
-		"/timelog/submit/{userId}": {
+		"/api/timelog/submit": {
 			"post": {
 				"operationId": "SubmitTimelog",
 				"responses": {
@@ -321,17 +318,14 @@
 				"tags": [
 					"Timelog"
 				],
-				"security": [],
-				"parameters": [
+				"security": [
 					{
-						"in": "path",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
+						"jwt": [
+							"user"
+						]
 					}
 				],
+				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -344,7 +338,7 @@
 				}
 			}
 		},
-		"/timelog/{timelogId}": {
+		"/api/timelog/{timelogId}": {
 			"get": {
 				"operationId": "FindTimelog",
 				"responses": {
@@ -369,7 +363,46 @@
 				"tags": [
 					"Timelog"
 				],
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"user"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "timelogId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteTimelog",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Timelog"
+				],
+				"security": [
+					{
+						"jwt": [
+							"user"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -382,7 +415,7 @@
 				]
 			}
 		},
-		"/timelog/end/{timelogId}": {
+		"/api/timelog/end/{timelogId}": {
 			"patch": {
 				"operationId": "EndTimelog",
 				"responses": {
@@ -407,7 +440,13 @@
 				"tags": [
 					"Timelog"
 				],
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"user"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",

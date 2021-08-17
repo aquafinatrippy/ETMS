@@ -54,25 +54,25 @@ export const endTimelog = async (timelogId: string, end_timelog: Date): Promise<
     }
 }
 
-// export const deleteTimelog = async (timelog_id: string): Promise<Feedback> => {
-//     try {
-//         const timelogRepo = getRepository(TimeLog)
-//
-//         const time = await getRepository(TimeLog).findOne({
-//             where:
-//                 {
-//                     id: timelog_id
-//                 }
-//         })
-//         if (!time) {
-//             return {message: "not found"}
-//         } else {
-//             await timelogRepo.remove(time)
-//             return {message: "Deleted successfully"}
-//         }
-//     } catch
-//         (e) {
-//         return {message: "Failed to delete timelog"}
-//     }
-// }
+export const deleteTimelog = async (timelog_id: string): Promise<Feedback> => {
+    try {
+        const timelogRepo = getRepository(TimeLog)
+
+        const time = await getRepository(TimeLog).findOne({
+            where:
+                {
+                    id: timelog_id
+                }
+        })
+        if (!time) {
+            return {message: "not found"}
+        } else {
+            await timelogRepo.remove(time)
+            return {message: "Deleted successfully"}
+        }
+    } catch
+        (e) {
+        return {message: "Failed to delete timelog"}
+    }
+}
 

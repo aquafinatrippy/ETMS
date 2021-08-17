@@ -4,7 +4,7 @@ import TimelogRouter from "./timelog.router";
 
 const router = express.Router()
 
-router.use("/users", UserRouter)
+router.use("/auth", UserRouter)
 router.use("/timelog", TimelogRouter)
 
 export default router
