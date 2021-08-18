@@ -19,6 +19,7 @@ export const submitTimelog = async (payload: ITimeLogPayload, userId: string): P
     try {
         const timelogRepository = getRepository(TimeLog)
         const timelog = new TimeLog();
+
         return timelogRepository.save({
             ...timelog,
             ...payload,
