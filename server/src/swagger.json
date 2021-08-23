@@ -162,7 +162,6 @@
 				},
 				"required": [
 					"description",
-					"start",
 					"userId"
 				],
 				"type": "object",

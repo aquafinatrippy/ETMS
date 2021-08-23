@@ -18,7 +18,7 @@ export class TimeLog {
     @Column()
     description!: string;
 
-    @Column({type: "timestamptz"})
+    @Column({type: "timestamptz", default: () => "CURRENT_TIMESTAMP"})
     start!: Date
 
     @Column({nullable: true, type: "timestamptz", default: null})

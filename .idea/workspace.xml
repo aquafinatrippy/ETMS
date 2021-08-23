@@ -29,10 +29,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\code\EmployeeTimeManagementSystem\server\src\tests" />
       <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
     </key>
   </component>
@@ -75,7 +76,9 @@
       <workItem from="1629227115581" duration="2101000" />
       <workItem from="1629272456364" duration="2637000" />
       <workItem from="1629297151858" duration="1951000" />
-      <workItem from="1629309161907" duration="4040000" />
+      <workItem from="1629309161907" duration="10433000" />
+      <workItem from="1629405918426" duration="6751000" />
+      <workItem from="1629658355645" duration="15134000" />
     </task>
     <servers />
   </component>
@@ -83,26 +86,30 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="227" y="333" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1629369801318">
+      <screen x="0" y="0" width="1857" height="1080" />
+    </state>
+    <state x="227" y="333" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1857.1080@0.0.1857.1080" timestamp="1629369801318" />
     <state x="708" y="295" key="FileChooserDialogImpl" timestamp="1629227112205">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
     <state x="708" y="295" key="FileChooserDialogImpl/0.0.1857.1080@0.0.1857.1080" timestamp="1629227112205" />
-    <state width="904" height="288" key="GridCell.Tab.0.bottom" timestamp="1629316905593">
+    <state width="904" height="288" key="GridCell.Tab.0.bottom" timestamp="1629370850309">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
-    <state width="904" height="288" key="GridCell.Tab.0.bottom/0.0.1857.1080@0.0.1857.1080" timestamp="1629316905593" />
-    <state width="904" height="288" key="GridCell.Tab.0.center" timestamp="1629316905593">
+    <state width="904" height="288" key="GridCell.Tab.0.bottom/0.0.1857.1080@0.0.1857.1080" timestamp="1629370850309" />
+    <state width="904" height="288" key="GridCell.Tab.0.center" timestamp="1629370850309">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
-    <state width="904" height="288" key="GridCell.Tab.0.center/0.0.1857.1080@0.0.1857.1080" timestamp="1629316905593" />
-    <state width="904" height="288" key="GridCell.Tab.0.left" timestamp="1629316905593">
+    <state width="904" height="288" key="GridCell.Tab.0.center/0.0.1857.1080@0.0.1857.1080" timestamp="1629370850309" />
+    <state width="904" height="288" key="GridCell.Tab.0.left" timestamp="1629370850308">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
-    <state width="904" height="288" key="GridCell.Tab.0.left/0.0.1857.1080@0.0.1857.1080" timestamp="1629316905593" />
-    <state width="904" height="288" key="GridCell.Tab.0.right" timestamp="1629316905593">
+    <state width="904" height="288" key="GridCell.Tab.0.left/0.0.1857.1080@0.0.1857.1080" timestamp="1629370850308" />
+    <state width="904" height="288" key="GridCell.Tab.0.right" timestamp="1629370850309">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
-    <state width="904" height="288" key="GridCell.Tab.0.right/0.0.1857.1080@0.0.1857.1080" timestamp="1629316905593" />
+    <state width="904" height="288" key="GridCell.Tab.0.right/0.0.1857.1080@0.0.1857.1080" timestamp="1629370850309" />
     <state x="859" y="188" key="SettingsEditor" timestamp="1629062856427">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>

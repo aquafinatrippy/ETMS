@@ -1,5 +1,4 @@
-import {Body, Post, Get, Route, Tags, Patch, Path, Delete, Security, Request, Hidden } from "tsoa";
-import * as express from "express";
+import {Body, Post, Get, Route, Tags, Patch, Path, Delete, Security, Request } from "tsoa";
 import {TimeLog} from "../models/timelog.entity";
 import {
     deleteTimelog,

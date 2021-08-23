@@ -6,13 +6,15 @@ const router = express.Router()
 
 router.get("/times", jwtAuth, async (req: Request, res: Response) => {
     const controller = new TimelogController()
-    const response = await controller.getAllTimelogs(req.id)
+    const id = (req as any).id
+    const response = await controller.getAllTimelogs(id)
     return res.json(response)
 })
 
 router.post("/submit", jwtAuth, async (req: Request, res: Response) => {
     const controller = new TimelogController()
-    const response = await controller.submitTimelog(req.body, req.id)
+    const id = (req as any).id
+    const response = await controller.submitTimelog(req.body, id)
     return res.json(response)
 })
 
