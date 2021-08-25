@@ -2,6 +2,7 @@ import {TimeLog} from "../models/timelog.entity";
 import {getRepository} from "typeorm";
 import {Feedback} from "../interfaces/user.interface";
 import {ITimeLogPayload} from "../interfaces/timelog.interface";
+import moment from 'moment';
 
 
 export const getAllTimelogs = async (userId: string): Promise<TimeLog[] | Feedback> => {
@@ -11,22 +12,32 @@ export const getAllTimelogs = async (userId: string): Promise<TimeLog[] | Feedba
         const timelogs = await timelogRepository.find({where: {userId}})
         return timelogs
     } catch (e) {
-        return {message: "No timelogs found"}
+        return {message: "No time logs found"}
     }
 }
 
 export const submitTimelog = async (payload: ITimeLogPayload, userId: string): Promise<ITimeLogPayload | Feedback> => {
     try {
+        let overlap: boolean = false
         const timelogRepository = getRepository(TimeLog)
+        const unfinishedTimelogs = await timelogRepository.findAndCount({where: {end: null, userId}})
+        if(unfinishedTimelogs[1] >= 1) return {message: "You have unfinished time logs, be sure to end previous one before submitting new"}
+        const time_logs = await timelogRepository.find({where: {userId}})
+        time_logs.forEach(time_log => {
+            console.log(moment(payload.start).isBetween(time_log.start, time_log.end))
+            if(moment(payload.start).isBetween(time_log.start, time_log.end)) {
+                overlap = true
+            }
+        })
+        if(overlap) return {message: "Time log is overlapping, cant submit."}
         const timelog = new TimeLog();
-
         return timelogRepository.save({
             ...timelog,
             ...payload,
             userId
         })
     } catch (e) {
-        return {message: "Failed to submit timelog"}
+        return {message: "Failed to submit time log"}
     }
 }
 
@@ -37,7 +48,7 @@ export const findTimelog = async (timelogId: string): Promise<ITimeLogPayload | 
         if(!found) return {message: "Timelog was not found"}
         return found
     }catch (e) {
-        return {message: "Timelog was not found"}
+        return {message: "Time log was not found"}
     }
 }
 

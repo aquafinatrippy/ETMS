@@ -15,7 +15,7 @@ afterEach(() => {
 
 
 const controller = new UserController();
-describe("User controller", () => {
+describe("User registering and login success tests", () => {
     test("Registering a user", async () => {
         const bodyOfRes: IUserPayload = {
             name: "test",
@@ -36,7 +36,27 @@ describe("User controller", () => {
         delete loginInfo.password
         expect(res).toMatchObject(loginInfo)
     })
+})
 
+describe("User registering and login fail tests", () => {
+    test("Registering with existing email", async () => {
+        const bodyOfRes: IUserPayload = {
+            name: "test",
+            surname: "test 2",
+            email: "test@hot.ee",
+            password: "secret1234"
+        }
+        const response = await controller.createUser(bodyOfRes)
+        expect(response).toEqual({message: "This email isn't available."})
+    })
+    test("Login with incorrect password", async () => {
+        const loginInfo: ILoginPayload ={
+            email: "test@hot.ee",
+            password: "xxxsecret12347331"
+        }
+        const res = await controller.loginUser(loginInfo)
+        expect(res).toEqual({message: "password is incorrect"})
+    })
 })
 
 

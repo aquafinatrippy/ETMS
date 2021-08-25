@@ -31,7 +31,7 @@ test("Set user ID for test to use", async () => {
 })
 
 
-describe("Timelog contoller", () => {
+describe("Timelog contoller success", () => {
     test("Submit single timelog", async () => {
         const exTimelog: ITimeLogPayload = {
             description: "test 1234, meeting at somewhere",

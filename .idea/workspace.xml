@@ -29,11 +29,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\code\EmployeeTimeManagementSystem\server\src\tests" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\code\EmployeeTimeManagementSystem\server\src\tests" />
       <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
     </key>
   </component>
@@ -78,7 +78,8 @@
       <workItem from="1629297151858" duration="1951000" />
       <workItem from="1629309161907" duration="10433000" />
       <workItem from="1629405918426" duration="6751000" />
-      <workItem from="1629658355645" duration="15134000" />
+      <workItem from="1629658355645" duration="15805000" />
+      <workItem from="1629877259679" duration="4065000" />
     </task>
     <servers />
   </component>
