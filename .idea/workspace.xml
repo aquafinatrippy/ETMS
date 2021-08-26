@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -18,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/views/register" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
@@ -29,11 +36,12 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\code\EmployeeTimeManagementSystem\server\src\tests" />
+      <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\code\EmployeeTimeManagementSystem\client\src\views\register" />
       <recent name="C:\code\EmployeeTimeManagementSystem\server\src" />
     </key>
   </component>
@@ -79,7 +87,8 @@
       <workItem from="1629309161907" duration="10433000" />
       <workItem from="1629405918426" duration="6751000" />
       <workItem from="1629658355645" duration="15805000" />
-      <workItem from="1629877259679" duration="4065000" />
+      <workItem from="1629877259679" duration="7755000" />
+      <workItem from="1629959896281" duration="2788000" />
     </task>
     <servers />
   </component>
@@ -91,6 +100,10 @@
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
     <state x="227" y="333" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1857.1080@0.0.1857.1080" timestamp="1629369801318" />
+    <state x="658" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1629963127088">
+      <screen x="0" y="0" width="1857" height="1080" />
+    </state>
+    <state x="658" y="287" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1857.1080@0.0.1857.1080" timestamp="1629963127088" />
     <state x="708" y="295" key="FileChooserDialogImpl" timestamp="1629227112205">
       <screen x="0" y="0" width="1857" height="1080" />
     </state>
