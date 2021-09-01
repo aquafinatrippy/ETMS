@@ -33,3 +33,11 @@ export const createUser = async (payload: IUserPayload): Promise<User | Feedback
         return {message: err}
     }
 }
+
+
+export const currentUser = async (id: string): Promise<User | Feedback> => {
+      const userRepository = getRepository(User)
+      const user = await userRepository.findOne({where: {id}})
+        if(!user) return {message: "Not authenticated"}
+        return user
+}

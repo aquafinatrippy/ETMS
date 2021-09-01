@@ -4,12 +4,14 @@ import dbConf from "./config/database"
 import swaggerUi from "swagger-ui-express";
 import Router from "./routes"
 import cookieParser from "cookie-parser"
+import cors from 'cors'
 import {default as swaggerJson} from './swagger.json'
 
 const PORT = process.env.PORT || 3000
 
 const app: Application = express();
 
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 

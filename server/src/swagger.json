@@ -254,6 +254,35 @@
 				}
 			}
 		},
+		"/api/auth/user": {
+			"get": {
+				"operationId": "CurrentUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"anyOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										},
+										{
+											"$ref": "#/components/schemas/Feedback"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/api/timelog/times": {
 			"get": {
 				"operationId": "GetAllTimelogs",

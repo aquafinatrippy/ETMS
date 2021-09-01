@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container} from '@material-ui/core';
-import Copyright from "../../components/copyright";
+import Copyright from "../../components/copyright/copyright";
 import {useStyles} from "./styles";
 
 
-export default function Register() {
+export const Register: FC = () =>  {
     const classes = useStyles();
 
     return (
@@ -68,7 +68,7 @@ export default function Register() {
                     >
                         Register
                     </Button>
-                    <Grid container justify={"center"}>
+                    <Grid container justifyContent={"center"}>
                         <Grid item>
                             <Link href="/login" variant="body2">
                                 {"You already have account? Login"}

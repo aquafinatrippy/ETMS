@@ -1,5 +1,5 @@
-import {Body, Post, Route, Tags} from "tsoa";
-import {createUser, loginUser} from "../services/user.service";
+import {Body, Get, Post, Route, Tags, Request} from "tsoa";
+import {createUser, currentUser, loginUser} from "../services/user.service";
 import {User} from "../models/user.entity";
 import {Feedback, ILoginPayload, IUserPayload} from "../interfaces/user.interface";
 
@@ -14,5 +14,9 @@ export default class UserController {
     @Post("/login")
     public async loginUser(@Body() body: ILoginPayload): Promise<User | Feedback>{
         return loginUser(body)
+    }
+    @Get("/user")
+    public async currentUser(@Request() id: string): Promise< User | Feedback>{
+        return currentUser(id)
     }
 }
