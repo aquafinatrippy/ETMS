@@ -30,7 +30,8 @@ export const createUser = async (payload: IUserPayload): Promise<User | Feedback
             ...payload
         })
     } catch (err) {
-        return {message: err}
+        const error = err as Error;
+        return {message: error?.message} as Feedback;
     }
 }
 

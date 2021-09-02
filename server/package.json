@@ -38,13 +38,13 @@
     "build": "tsc -p .",
     "dev": "concurrently \"nodemon\" \"nodemon -x tsoa spec\"",
     "swagger": "tsoa spec",
-    "test": "jest"
+    "test": "jest",
+    "dockerDev": "nodemon -L src/index.ts"
   },
   "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
-    "exec": "ts-node src/index.ts"
+    "watch": ["src"],
+    "ignore": ["dist", "node_modules"],
+    "ext": "ts, json",
+    "exec": "ts-node"
   }
 }

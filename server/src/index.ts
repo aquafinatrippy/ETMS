@@ -13,16 +13,15 @@ const app: Application = express();
 
 app.use(cors())
 app.use(express.json())
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use(
     "/docs",
     swaggerUi.serve,
     swaggerUi.setup(swaggerJson)
-)
+);
 
 app.use("/api", Router)
-
 
 createConnection(dbConf).then((_connection) => {
     app.listen(PORT, () => {

@@ -33,7 +33,7 @@ router.post("/login", body('email').isEmail(), body("password").isLength({min: 6
             .status(200)
             .json({token, user: response});
     }
-    res.status(400).json({response})
+    res.status(401).json({response})
 })
 
 router.get("/logout", jwtAuth, async (req: Request, res: Response) => {

@@ -1,15 +1,16 @@
-FROM node:latest
+FROM node:14.16.0-alpine3.10
 
-RUN mkdir -p /usr/src/index
-RUN mkdir -p /usr/src/index/server
-
-WORKDIR /usr/src/index/server
-
-COPY package*.json ./
+WORKDIR /tmp
+COPY package.json ./
 RUN npm install
 
-COPY . .
+WORKDIR /home/node
+RUN cp /tmp/package.json ./package.json
+RUN cp -r /tmp/node_modules ./node_modules
 
-EXPOSE 3000
+COPY tsconfig.json ./
+COPY tsoa.json ./
+COPY types types
+COPY src src
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dockerDev"]

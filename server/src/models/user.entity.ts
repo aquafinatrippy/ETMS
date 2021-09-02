@@ -2,7 +2,7 @@ import {
     BeforeInsert,
     Column,
     CreateDateColumn,
-    Entity, JoinColumn,
+    Entity, 
     OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn
@@ -23,6 +23,7 @@ export class User {
 
     @Column()
     surname!: string;
+
 
     @Column()
     password!: string
