@@ -19,7 +19,7 @@ router.post("/register", body('email').isEmail(), body("password").isLength({min
 
 router.post("/login", body('email').isEmail(), body("password").isLength({min: 6}), async (req: Request, res: Response) => {
     const errors = validationResult(req)
-    if (!errors.isEmpty()) return res.json({response: errors.array()})
+    if (!errors.isEmpty()) return res.status(400).json({response: errors.array()})
     const controller = new UserController();
     const response = await controller.loginUser(req.body)
     if (response instanceof User) {
@@ -33,7 +33,7 @@ router.post("/login", body('email').isEmail(), body("password").isLength({min: 6
             .status(200)
             .json({token, user: response});
     }
-    res.json({response})
+    res.status(400).json({response})
 })
 
 router.get("/logout", jwtAuth, async (req: Request, res: Response) => {

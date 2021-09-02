@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {Login} from './views/login'
 import {
@@ -9,10 +9,10 @@ import {
 } from "react-router-dom";
 import {Register} from './views/register';
 import {Dashboard} from './views/dashboard';
-import ProtectedRoute  from './hooks/privateRoute';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./redux";
 import {checkUser} from "./redux/modules/auth";
+import {Navbar} from "./components/navbar";
 
 
 function App() {
@@ -21,30 +21,34 @@ function App() {
         return state.user.isLogged
     })
     dispatch(checkUser())
-    useEffect(() => {
-        dispatch(checkUser)
-    }, [dispatch])
-    //
-    //
-    // console.log(checklogStatus)
 
-    return (
+     return (
         <Router>
             <div className="App">
-                {/*{logged ? <Navbar/> : <></>}*/}
                 <Switch>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                    <Route path="/register">
-                        <Register/>
-                    </Route>
-                    <ProtectedRoute
-                        authenticationPath='/login'
-                        component={Dashboard}
-                    />
+                    {!checklogStatus ? (
+                        <>
+                            <Redirect to={"/login"}/>
+                            <Route path="/login">
+                                <Login/>
+                            </Route>
+                            <Route path="/register">
+                                <Register/>
+                            </Route></>
+                    ) : (
+                        <>
+                            <Redirect to={"/"} from={"**"}/>
+                            <Redirect to={"/"}/>
+                            <Navbar/>
+                            <Route path={"/"}>
+                                <Dashboard/>
+                            </Route>
+                        </>
 
-                    <Redirect from={"/"} to={"/login"} />
+                    )}
+
+
+                    <Redirect from={"/"} to={"/login"}/>
                 </Switch>
             </div>
         </Router>

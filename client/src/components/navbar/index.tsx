@@ -1,15 +1,15 @@
 import React, {FC} from "react";
 import {AppBar, Toolbar, Typography, Button} from "@material-ui/core";
 import {useStyles} from "./styles";
-import axios from "axios";
+import {logoutUser} from "../../redux/modules/auth";
+import {useDispatch} from "react-redux";
 
 export const Navbar: FC = () => {
     const classes = useStyles();
+    const dispatch = useDispatch()
 
-    const logoutHandle = async () => {
-        document.cookie = 'access-token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        window.location.href = '/';
-        await axios.get("/api/auth/logout")
+    const logoutHandle = () => {
+        dispatch(logoutUser())
     }
 
     return (

@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from "axios";
-import {UserCredentials, UserState } from '../interfaces/user.interface';
-
+import {UserCredentials, UserState} from '../interfaces/user.interface';
 
 
 const initialState: UserState = {
@@ -19,7 +18,7 @@ export const checkUser = createAsyncThunk(
     async (arg: void, thunkAPI) => {
         const res = await axios.get("/api/auth/user")
         console.log('res', res)
-        if(res.status === 200) return res.data.response
+        if (res.status === 200) return res.data.response
         return thunkAPI.rejectWithValue(res.data)
     }
 )
@@ -32,44 +31,40 @@ export const loginUser = createAsyncThunk(
                 email,
                 password
             }, {withCredentials: true})
-            // let data = await response.json();
             console.log('response', response.data);
-            if (response.status === 200) {
-                return response.data.user;
-            } else {
-                return thunkAPI.rejectWithValue(response);
-            }
-        } catch (e) {
-            console.log('Error', e.response.data);
-            thunkAPI.rejectWithValue(e.response.data);
+            if (response.status === 200) return response.data.user;
+        }catch (e) {
+            return thunkAPI.rejectWithValue("Check ur login credentials")
         }
+
+    });
+
+export const logoutUser = createAsyncThunk("users/logout",
+    async () => {
+        document.cookie = 'access-token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        window.location.href = '/';
+        const res = await axios.get("/api/auth/logout")
+        return res.data
     }
-);
+    )
 
 
 export const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {
-        login: (state) => {
-            state.isLogged = true
-        },
-        logout: state => {
-            state.isLogged = false
-        }
-    },
+    reducers: {},
     extraReducers: {
-        [loginUser.fulfilled.type]: (state, { payload }) => {
+        [loginUser.fulfilled.type]: (state, {payload}) => {
             state.email = payload.email;
             state.isFetching = false;
             state.isSuccess = true;
+            state.isLogged = true
             return state;
         },
-        [loginUser.rejected.type]: (state, { payload }) => {
-            console.log('payload', payload);
+        [loginUser.rejected.type]: (state, {payload}) => {
             state.isFetching = false;
             state.isError = true;
-            state.errorMessage = payload.message;
+            state.errorMessage = payload
         },
         [loginUser.pending.type]: (state) => {
             state.isFetching = true;
@@ -77,18 +72,25 @@ export const authSlice = createSlice({
         [checkUser.fulfilled.type]: (state, {payload}) => {
             console.log(state)
             state.email = payload.email
+            state.isFetching = false
             state.isLogged = true
 
         },
         [checkUser.rejected.type]: (state) => {
-            console.log(state)
+            state.isLogged = false
+            state.isFetching = false
+        },
+        [checkUser.pending.type]: (state) => {
+            state.isFetching = true
+        },
+        [logoutUser.fulfilled.type]: (state) => {
+            state.isLogged = false
+            state.email = ""
         }
     }
 })
 
-export const {login, logout} = authSlice.actions
 export const authReducer = authSlice.reducer
-
 
 
 // export const logout = () => async (dispatch: any) => {

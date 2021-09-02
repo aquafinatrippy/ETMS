@@ -1,11 +1,11 @@
 import React, {FC, useState} from 'react';
-import {Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container} from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container, CircularProgress} from '@material-ui/core';
 import Copyright from "../../components/copyright/copyright";
 import {useStyles} from './styles';
-import axios from 'axios'
-import ProxyDetection from "../../helpers/proxyDetection";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { loginUser } from '../../redux/modules/auth';
+import { useHistory } from 'react-router-dom';
+import {RootState} from "../../redux";
 
 
 export const Login: FC = () => {
@@ -13,6 +13,11 @@ export const Login: FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
+    const history = useHistory()
+    const logged = useSelector((state: RootState) => {
+        return state.user.isLogged
+    })
+    const fetching = useSelector((state: RootState) => state.user.isFetching)
 
 
 
@@ -28,17 +33,20 @@ export const Login: FC = () => {
                 break;
         }
     }
-
     const handleSubmit = async (e: any) => {
         e.preventDefault()
        dispatch(loginUser({email, password}))
+        if(logged){
+            history.push("/")
+        }
     }
 
 
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
-            <div className={classes.paper}>
+            {fetching && <CircularProgress/>}
+            {!fetching &&  <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
                 </Avatar>
                 <Typography component="h1" variant="h5">
@@ -88,7 +96,8 @@ export const Login: FC = () => {
                         </Grid>
                     </Grid>
                 </form>
-            </div>
+            </div>}
+
             <Box mt={8}>
                 <Copyright/>
             </Box>
