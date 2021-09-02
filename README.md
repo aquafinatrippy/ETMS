@@ -1,6 +1,11 @@
 # ETMS
 Employee time managment system. Typescript project with NodeJs, ReactJs, Docker, Jest and Postgres.  
 
+## API documentation
+
+Documented with swagger API
+* localhost:3000/docs/
+
 ## How to run
 
  * In cli: docker-compose up --build
