@@ -3,7 +3,7 @@ Employee time managment system. Typescript project with NodeJs, ReactJs, Docker,
 
 ## API documentation
 
-Documented with swagger API
+Documented with API swagger 
 * localhost:3000/docs/
 
 ## How to run
