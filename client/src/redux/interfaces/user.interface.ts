@@ -12,3 +12,10 @@ export interface UserCredentials {
     password?: string;
     email: string
 }
+
+export interface RegisterCredentials{
+    name: string,
+    surname: string,
+    email: string,
+    password: string
+}

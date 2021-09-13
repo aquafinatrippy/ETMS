@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from "axios";
-import {UserCredentials, UserState} from '../interfaces/user.interface';
+import {RegisterCredentials, UserCredentials, UserState} from '../interfaces/user.interface';
 
 
 const initialState: UserState = {
@@ -33,11 +33,29 @@ export const loginUser = createAsyncThunk(
             }, {withCredentials: true})
             console.log('response', response.data);
             if (response.status === 200) return response.data.user;
-        }catch (e) {
+        } catch (e) {
             return thunkAPI.rejectWithValue("Check ur login credentials")
         }
-
     });
+
+export const registerUser = createAsyncThunk("users/register",
+    async ({email, password, name, surname}: RegisterCredentials, thunkAPI) => {
+        try {
+            const response = await axios.post("/api/auth/register", {
+                email,
+                password,
+                name,
+                surname
+            }, {withCredentials: true})
+            console.log('response', response.data);
+            if (response.status === 200) {
+                return response.data.user;
+            }
+        } catch (e) {
+            return thunkAPI.rejectWithValue("Failed to register account")
+        }
+    }
+)
 
 export const logoutUser = createAsyncThunk("users/logout",
     async () => {
@@ -46,7 +64,8 @@ export const logoutUser = createAsyncThunk("users/logout",
         const res = await axios.get("/api/auth/logout")
         return res.data
     }
-    );
+);
+
 
 export const authSlice = createSlice({
     name: "auth",
@@ -69,7 +88,6 @@ export const authSlice = createSlice({
             state.isFetching = true;
         },
         [checkUser.fulfilled.type]: (state, {payload}) => {
-            console.log(state)
             state.email = payload.email
             state.isFetching = false
             state.isLogged = true
@@ -85,16 +103,19 @@ export const authSlice = createSlice({
         [logoutUser.fulfilled.type]: (state) => {
             state.isLogged = false
             state.email = ""
+        },
+        [registerUser.fulfilled.type]: (state) => {
+            state.isFetching = false;
+            state.isSuccess = true;
+        },
+        [registerUser.pending.type]: (state) => {
+            state.isFetching = true
+        },
+        [registerUser.rejected.type]: (state, {payload}) => {
+            state.isLogged = false
+            state.errorMessage = payload
         }
     }
 })
 
 export const authReducer = authSlice.reducer
-
-
-// export const logout = () => async (dispatch: any) => {
-//     document.cookie = 'access-token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-//     window.location.href = '/';
-//     await axios.get("/api/auth/logout")
-//     dispatch("user/LOGOUT");
-// };

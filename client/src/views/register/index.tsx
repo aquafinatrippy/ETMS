@@ -1,11 +1,40 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {Avatar, Button, CssBaseline, TextField, Link, Grid, Box, Typography, Container} from '@material-ui/core';
 import Copyright from "../../components/copyright/copyright";
 import {useStyles} from "./styles";
+import {RegisterCredentials} from "../../redux/interfaces/user.interface";
+import {useDispatch} from "react-redux";
+import {registerUser} from "../../redux/modules/auth";
 
 
 export const Register: FC = () =>  {
     const classes = useStyles();
+    const [user, setUser] = useState<RegisterCredentials>({name: "", surname: "", password: "", email: ""})
+    const dispatch = useDispatch()
+
+    const handleChange = (e: any) => {
+        switch (e.target.name){
+            case 'email':
+                setUser({...user ,email: e.target.value})
+                break;
+            case 'password':
+                setUser({...user ,password: e.target.value})
+                break;
+            case 'name':
+                setUser({...user ,name: e.target.value})
+                break;
+            case 'surname':
+                setUser({...user ,surname: e.target.value})
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault()
+        dispatch(registerUser(user))
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -16,7 +45,7 @@ export const Register: FC = () =>  {
                 <Typography component="h1" variant="h5">
                     User registration
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={handleSubmit} noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -24,8 +53,9 @@ export const Register: FC = () =>  {
                         fullWidth
                         id="fname"
                         label="First name"
-                        name="firstname"
+                        name="name"
                         autoFocus
+                        onChange={handleChange}
                     />
                     <TextField
                         variant="outlined"
@@ -36,6 +66,7 @@ export const Register: FC = () =>  {
                         label="Surname"
                         name="surname"
                         autoFocus
+                        onChange={handleChange}
                     />
                     <TextField
                         variant="outlined"
@@ -47,6 +78,7 @@ export const Register: FC = () =>  {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={handleChange}
                     />
                     <TextField
                         variant="outlined"
@@ -58,6 +90,7 @@ export const Register: FC = () =>  {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleChange}
                     />
                     <Button
                         type="submit"

@@ -21,6 +21,7 @@ app.use(
     swaggerUi.setup(swaggerJson)
 );
 
+
 app.use("/api", Router)
 
 createConnection(dbConf).then((_connection) => {

@@ -28,13 +28,15 @@ function App() {
                 <Switch>
                     {!checklogStatus ? (
                         <>
-                            <Redirect to={"/login"}/>
+
+                            <Route path="/register">
+                                <Register/>
+                            </Route>
                             <Route path="/login">
                                 <Login/>
                             </Route>
-                            <Route path="/register">
-                                <Register/>
-                            </Route></>
+
+                        </>
                     ) : (
                         <>
                             <Redirect to={"/"} from={"**"}/>
@@ -48,7 +50,6 @@ function App() {
                     )}
 
 
-                    <Redirect from={"/"} to={"/login"}/>
                 </Switch>
             </div>
         </Router>
